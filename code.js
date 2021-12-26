@@ -5,45 +5,57 @@ function computerPlay () {
 }
 
 function playRound () {
-    const playerSelection  = window.prompt('Select Rock, Paper or Scissors.');
     const computerSelection = computerPlay()
+    let pcScore = 0;
+    let playerScore = 0;
 
-    if (playerSelection.toUpperCase() === 'ROCK') {
+    if (playerSelection === 'ROCK') {
         if (computerSelection === 'ROCK') {
-            console.log('draw')
+            return 'TIE'
         } else if (computerSelection === 'PAPER') {
-            console.log('you lost')
+            return 'YOU LOST'
         } else if (computerSelection === 'SCISSORS') {
-            console.log('you won')
+            return 'YOU WON'
         }
     }
 
-    if (playerSelection.toUpperCase() === 'PAPER') {
+    if (playerSelection === 'PAPER') {
         if (computerSelection === 'ROCK') {
-            console.log('you won')
+            return 'YOU WON'
         } else if (computerSelection === 'PAPER') {
-            console.log('draw')
+            return 'TIE'
         } else if (computerSelection === 'SCISSORS') {
-            console.log('you lost')
+            return 'YOU LOST'
         }
     }
 
-    if (playerSelection.toUpperCase() === 'SCISSORS') {
+    if (playerSelection === 'SCISSORS') {
         if (computerSelection === 'ROCK') {
-            console.log('you lost')
+            return 'YOU LOST'
         } else if (computerSelection === 'PAPER') {
-            console.log('you won')
+            return 'YOU WON'
         } else if (computerSelection === 'SCISSORS') {
-            console.log('draw')
+            return 'TIE'
         }
     }
 }
 
-function game () {
-    r = window.prompt('How many rounds?')
-    for (let c = 0; c < r; c++) {
-        playRound()
-    }
-}
+const result = document.querySelector('#result');
 
-game()
+const btnR = document.querySelector('#btnR');
+btnR.addEventListener('click', () => {
+    playerSelection = 'ROCK';
+    result.textContent = playRound();
+})
+
+const btnP = document.querySelector('#btnP');
+btnP.addEventListener('click', () => {
+    playerSelection = 'PAPER';
+    result.textContent = playRound();
+})
+
+const btnS = document.querySelector('#btnS');
+btnS.addEventListener('click', () => {
+    playerSelection = 'SCISSORS';
+    result.textContent = playRound();
+})
